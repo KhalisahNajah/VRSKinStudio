@@ -1,6 +1,6 @@
 using UnityEngine;
-using Leap;
-using System;
+using Leap; // Make sure Leap Motion's namespace is included if Chirality is from there
+using System; // Required for Action delegate
 
 public class InteractableArrow : MonoBehaviour
 {
@@ -20,7 +20,8 @@ public class InteractableArrow : MonoBehaviour
     private bool isHandTouching = false;
     private Vector3 currentHandTipPosition; // To store the last known hand position for gizmo
 
-    public event Action<SwipeDetector.SwipeDirection> OnArrowSwiped;
+    // *** CRUCIAL CHANGE HERE: Event now passes the InteractableArrow instance itself ***
+    public event Action<InteractableArrow, SwipeDetector.SwipeDirection> OnArrowSwiped;
 
     void Start()
     {
@@ -72,6 +73,7 @@ public class InteractableArrow : MonoBehaviour
 
         Frame frame = swipeDetector.leapProvider.CurrentFrame;
         
+        // Get the hand based on the expectedChirality
         Hand hand = frame.GetHand(expectedHand); 
 
         // --- MODIFIED HAND VALIDITY CHECK ---
@@ -82,7 +84,7 @@ public class InteractableArrow : MonoBehaviour
             float distance = Vector3.Distance(currentHandTipPosition, transform.position); // Assuming transform.position is visual center
             isHandTouching = (distance < interactionDistance);
 
-            // Debug logs for touch detection
+            // Debug logs for touch detection (uncomment if needed)
             // if (isHandTouching) { Debug.Log($"{expectedHand} Hand touching {gameObject.name}! Distance: {distance}"); }
             // else { Debug.Log($"{expectedHand} Hand NOT touching {gameObject.name}. Distance: {distance}"); }
 
@@ -112,7 +114,10 @@ public class InteractableArrow : MonoBehaviour
         {
             Debug.Log($"SUCCESS! {expectedHand} Hand swiped {gameObject.name} correctly in direction: {direction}");
             arrowRenderer.material.color = successColor;
-            OnArrowSwiped?.Invoke(direction);
+            
+            // *** CRUCIAL CHANGE HERE: Invoke with 'this' (the current InteractableArrow instance) ***
+            OnArrowSwiped?.Invoke(this, direction); 
+            
             Invoke("ResetArrowColor", 1.0f);
         }
     }

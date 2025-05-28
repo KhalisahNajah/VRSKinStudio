@@ -30,6 +30,16 @@ namespace Leap.Examples
 
         private bool hasCorrectPoseBeenDetected = false; // Flag to track if the correct pose has been detected
 
+        // --- NEW: Pose Lost Settings ---
+        [Header("Pose Lost Settings")]
+        [SerializeField]
+        private GameObject poseLostCanvas; // The canvas that appears when the correct pose is lost
+
+        [SerializeField]
+        private float poseLostCheckInterval = 0.5f; // How often to check if the pose is lost
+        private string currentExpectedPoseName = ""; // Stores the name of the pose we are currently looking for
+        private Coroutine poseLostCheckCoroutine; // Reference to the pose lost coroutine
+
         [Header("Next Canvas Switch Settings (after 'correctCanvas' hides)")]
         [Tooltip("The canvas that will be activated AFTER the 'correctCanvas' has hidden.")]
         public Canvas nextCanvas;
@@ -59,6 +69,10 @@ namespace Leap.Examples
             // Ensure nextCanvas is initially off
             if (nextCanvas != null)
                 nextCanvas.gameObject.SetActive(false);
+
+            // Ensure poseLostCanvas is initially off
+            if (poseLostCanvas != null)
+                poseLostCanvas.SetActive(false);
 
             // Ensure all objects/texts for the next switch are initially in their intended 'off' state
             SetInitialStatesForNextSwitchElements();
@@ -103,45 +117,135 @@ namespace Leap.Examples
             }
         }
 
-
+        /// <summary>
+        /// This method is called when a pose is detected.
+        /// </summary>
+        /// <param name="inputString">The name of the detected pose.</param>
         public void PoseDetected(string inputString)
         {
-            // Only proceed if the correct pose hasn't been detected yet
-            if (hasCorrectPoseBeenDetected)
+            // If the correct pose has already been detected and the next scene is triggered,
+            // we don't want to reactivate the initial flow or pose lost logic.
+            if (hasCorrectPoseBeenDetected && !string.IsNullOrEmpty(currentExpectedPoseName))
             {
-                return; // Exit the method if already detected
+                // If the detected pose is the one we are expecting, hide the pose lost canvas
+                if (string.Equals(inputString, currentExpectedPoseName, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (poseLostCanvas != null && poseLostCanvas.activeSelf)
+                    {
+                        poseLostCanvas.SetActive(false);
+                        Debug.Log($"PoseDetection: Re-detected correct pose '{inputString}'. Hiding Pose Lost Canvas.", this);
+                        // Stop the pose lost check coroutine when the pose is found again
+                        if (poseLostCheckCoroutine != null)
+                        {
+                            StopCoroutine(poseLostCheckCoroutine);
+                            poseLostCheckCoroutine = null;
+                        }
+                    }
+                }
+                return; // Exit if the final correct pose has been detected and we are waiting for user to return to it
             }
 
             foreach (var pose in poseList)
             {
                 if (string.Equals(inputString, pose.poseName, StringComparison.OrdinalIgnoreCase))
                 {
-                    // Set the flag to true as the correct pose is now detected
-                    hasCorrectPoseBeenDetected = true;
-
-                    if (pose.poseViewer != null)
+                    // This is the initial correct pose detection
+                    if (!hasCorrectPoseBeenDetected)
                     {
-                        Destroy(pose.poseViewer); // Remove the pose viewer
+                        hasCorrectPoseBeenDetected = true; // Set the flag to true as the correct pose is now detected
+                        currentExpectedPoseName = pose.poseName; // Store the name of the pose that triggered the correct sequence
+
+                        if (pose.poseViewer != null)
+                        {
+                            Destroy(pose.poseViewer); // Remove the pose viewer
+                            Debug.Log($"PoseDetection: Destroyed Pose Viewer for '{pose.poseName}'.", this);
+                        }
+
+                        if (initialCanvas != null)
+                        {
+                            initialCanvas.SetActive(false);
+                            Debug.Log("PoseDetection: Hiding Initial Canvas.", this);
+                        }
+
+                        // Start the coroutine to display correctCanvas, then trigger the next canvas switch
+                        if (correctCanvas != null)
+                        {
+                            Debug.Log("PoseDetection: Showing Correct Canvas.", this);
+                            StartCoroutine(ShowCorrectCanvasAndThenSwitch(correctCanvas, correctCanvasDisplayDuration));
+                        }
+                        else
+                        {
+                            // If there's no correctCanvas to show, immediately trigger the next switch
+                            Debug.LogWarning("PoseDetection: No Correct Canvas assigned. Immediately triggering next switch.", this);
+                            ExecuteNextCanvasSwitchLogic();
+                        }
                     }
-
-                    if (initialCanvas != null)
-                        initialCanvas.SetActive(false);
-
-                    // Start the coroutine to display correctCanvas, then trigger the next canvas switch
-                    if (correctCanvas != null)
+                    // This part handles the case where the pose was lost and now re-detected correctly
+                    else if (string.Equals(inputString, currentExpectedPoseName, StringComparison.OrdinalIgnoreCase))
                     {
-                        StartCoroutine(ShowCorrectCanvasAndThenSwitch(correctCanvas, correctCanvasDisplayDuration));
+                        if (poseLostCanvas != null && poseLostCanvas.activeSelf)
+                        {
+                            poseLostCanvas.SetActive(false);
+                            Debug.Log($"PoseDetection: Re-detected correct pose '{inputString}'. Hiding Pose Lost Canvas.", this);
+                            // Stop the pose lost check coroutine when the pose is found again
+                            if (poseLostCheckCoroutine != null)
+                            {
+                                StopCoroutine(poseLostCheckCoroutine);
+                                poseLostCheckCoroutine = null;
+                            }
+                        }
                     }
-                    else
-                    {
-                        // If there's no correctCanvas to show, immediately trigger the next switch
-                        ExecuteNextCanvasSwitchLogic();
-                    }
-
                     break; // Exit the loop once the pose is found and processed
                 }
             }
         }
+
+        /// <summary>
+        /// This method should be called when NO expected pose is detected.
+        /// It's typically triggered by an external pose detection system.
+        /// </summary>
+        public void NoPoseDetected()
+        {
+            // Only show pose lost canvas if the correct pose was previously detected
+            // and we are currently waiting for that specific pose, AND the pose lost canvas is not already active.
+            if (hasCorrectPoseBeenDetected && !string.IsNullOrEmpty(currentExpectedPoseName) && (poseLostCanvas != null && !poseLostCanvas.activeSelf))
+            {
+                if (poseLostCheckCoroutine == null)
+                {
+                    poseLostCheckCoroutine = StartCoroutine(CheckForPoseLost());
+                }
+            }
+        }
+
+        private IEnumerator CheckForPoseLost()
+        {
+            while (true)
+            {
+                // This coroutine will repeatedly check if the currentExpectedPoseName is actively being held.
+                // You will need to integrate this with your actual pose detection mechanism.
+                // For demonstration, let's assume if PoseDetected is NOT called for currentExpectedPoseName, it's lost.
+                // A better approach would be for your pose detection system to explicitly call NoPoseDetected
+                // or provide a continuously updated "current detected pose" string.
+
+                // For now, if currentExpectedPoseName is set and the 'PoseDetected' method hasn't confirmed it recently,
+                // we'll assume it's lost. This requires your external pose detection to constantly report its state.
+
+                // A simpler, more direct way is if your external pose detection has an "OnPoseLost" event or method.
+                // If it doesn't, you might need a separate mechanism to track the last detected pose and a timer.
+
+                // For the purpose of this script, let's assume 'NoPoseDetected()' is called by your
+                // pose tracking system when no _specific_ pose (or the expected one) is being held.
+
+                // If the poseLostCanvas is not active and we're expecting a pose, show it.
+                if (poseLostCanvas != null && !poseLostCanvas.activeSelf)
+                {
+                    poseLostCanvas.SetActive(true);
+                    Debug.Log("PoseDetection: Pose Lost! Showing Pose Lost Canvas.", this);
+                }
+                yield return new WaitForSeconds(poseLostCheckInterval);
+            }
+        }
+
 
         private IEnumerator ShowCorrectCanvasAndThenSwitch(GameObject canvasToShow, float duration)
         {
@@ -149,8 +253,19 @@ namespace Leap.Examples
             yield return new WaitForSeconds(duration); // Wait for its specified duration
             canvasToShow.SetActive(false); // Hide the 'correctCanvas'
 
+            // Stop any ongoing pose lost check coroutine once the final correct sequence is done
+            if (poseLostCheckCoroutine != null)
+            {
+                StopCoroutine(poseLostCheckCoroutine);
+                poseLostCheckCoroutine = null;
+            }
             // Now that the 'correctCanvas' has hidden, trigger the next canvas switch logic
             ExecuteNextCanvasSwitchLogic();
+
+            // After the final switch, reset hasCorrectPoseBeenDetected and currentExpectedPoseName
+            // if you intend for the entire process to be repeatable or for other poses to be detected.
+            // If this is a one-time sequence leading to a new state, keep them as is.
+            // For this scenario, we'll keep `hasCorrectPoseBeenDetected` as true to prevent re-triggering the initial flow.
         }
 
         /// <summary>

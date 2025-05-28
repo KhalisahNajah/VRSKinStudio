@@ -70,13 +70,13 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Pinch to Paint\Scripts\StrokeProcessor.cs" />
+    <Compile Include="Assets\Script\GrabbingDetection.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Misc and Shared\Scripts\KeyboardManager.cs" />
-    <Compile Include="Assets\Script\CanvasManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Turntable and Pullcord\Scripts\PullCord\Exploding Items\ExplodingItem.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Misc and Shared\Scripts\ScaleOnEnable.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="Assets\Script\GrabDetector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Pinch to Paint\Scripts\ThickRibbonRenderer.cs" />
+    <Compile Include="Assets\Script\GrabPoseDetector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Turntable and Pullcord\Scripts\Turntable\Turntable.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Turntable and Pullcord\Scripts\Turntable\TurntableVisuals.cs" />
     <Compile Include="Assets\Script\FaceMassageDetector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Script\PoseMonitor.cs" />
     <Compile Include="Assets\Script\UnderEye\UnderEyeSwipeDetector.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />

@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - ChangeScene
     - IngredientTextDisplay
     - Leap.Examples.EditorURL
+    - Leap.Examples.PoseDetection
     - Leap.Examples.PoseShowcaseManager
     - Leap.Examples.SpawnObjectAtPosition
     - QuestionController
@@ -15,6 +16,8 @@ ScriptsOnlyBuild:
     Ultraleap.Tracking.Core.Editor.dll:
     - Leap.Readme.SceneReadme
     Ultraleap.Tracking.Core.dll:
+    - Leap.Attachments.AttachmentHand
+    - Leap.Attachments.AttachmentPointBehaviour
     - Leap.HandEnableDisable
     - Leap.HandPoseDetector
     - Leap.HandPoseScriptableObject
@@ -66,6 +69,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.RectMask2D
   serializedClasses:
     Assembly-CSharp:
+    - Leap.Examples.PoseDetection/ShowCasePose
     - Leap.Examples.PoseShowcaseManager/ShowCasePose
     Ultraleap.Tracking.Core:
     - Leap.Arm
@@ -210,17 +214,17 @@ ScriptsOnlyBuild:
     fullTypeName: ChangeScene
     methodName: PoseShowcase
   - assembly: Assembly-CSharp
+    fullTypeName: Leap.Examples.PoseDetection
+    methodName: PoseDetected
+  - assembly: Assembly-CSharp
+    fullTypeName: Leap.Examples.PoseDetection
+    methodName: PoseDetected
+  - assembly: Assembly-CSharp
     fullTypeName: ChangeScene
     methodName: MainPage
   - assembly: Assembly-CSharp
     fullTypeName: ChangeScene
     methodName: PhysicalHands
-  - assembly: Assembly-CSharp
-    fullTypeName: Leap.Examples.PoseShowcaseManager
-    methodName: PoseDetected
-  - assembly: Assembly-CSharp
-    fullTypeName: Leap.Examples.PoseShowcaseManager
-    methodName: PoseLost
   - assembly: Assembly-CSharp
     fullTypeName: Leap.Examples.PoseShowcaseManager
     methodName: PoseDetected
@@ -300,39 +304,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 650}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1726}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 1988}
+      Script: {instanceID: 1992}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2724}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2808}
     - Class: 114
-      Script: {instanceID: 3048}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3300}
+      Script: {instanceID: 3316}
     - Class: 114
-      Script: {instanceID: 3410}
+      Script: {instanceID: 3426}
     - Class: 114
-      Script: {instanceID: 3660}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 3902}
+      Script: {instanceID: 3918}
     - Class: 114
-      Script: {instanceID: 5354}
+      Script: {instanceID: 5376}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6104}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6502}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -381,31 +385,31 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 2322}
+      Script: {instanceID: 2328}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 3048}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3398}
+      Script: {instanceID: 3414}
     - Class: 114
-      Script: {instanceID: 4404}
+      Script: {instanceID: 4426}
     - Class: 114
-      Script: {instanceID: 4532}
+      Script: {instanceID: 4554}
     - Class: 114
-      Script: {instanceID: 4826}
+      Script: {instanceID: 4848}
     - Class: 114
-      Script: {instanceID: 5608}
+      Script: {instanceID: 5630}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6862}
+      Script: {instanceID: 6886}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -451,52 +455,58 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
+    - Class: 90
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 650}
-    - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1992}
     - Class: 114
-      Script: {instanceID: 1988}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2702}
     - Class: 114
-      Script: {instanceID: 2724}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2808}
     - Class: 114
-      Script: {instanceID: 3048}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3198}
+      Script: {instanceID: 3214}
     - Class: 114
-      Script: {instanceID: 3300}
+      Script: {instanceID: 3262}
     - Class: 114
-      Script: {instanceID: 3410}
+      Script: {instanceID: 3316}
     - Class: 114
-      Script: {instanceID: 3660}
+      Script: {instanceID: 3426}
     - Class: 114
-      Script: {instanceID: 3902}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 5354}
+      Script: {instanceID: 3918}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 4386}
     - Class: 114
-      Script: {instanceID: 6060}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6104}
+      Script: {instanceID: 6034}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6082}
     - Class: 114
-      Script: {instanceID: 8690}
+      Script: {instanceID: 6126}
+    - Class: 114
+      Script: {instanceID: 6502}
+    - Class: 114
+      Script: {instanceID: 8724}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -551,39 +561,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 650}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1726}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1790}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 2932}
+      Script: {instanceID: 2946}
     - Class: 114
-      Script: {instanceID: 3048}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3198}
+      Script: {instanceID: 3214}
     - Class: 114
-      Script: {instanceID: 3660}
+      Script: {instanceID: 3676}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6012}
+      Script: {instanceID: 6034}
     - Class: 114
-      Script: {instanceID: 6060}
+      Script: {instanceID: 6082}
     - Class: 114
-      Script: {instanceID: 6104}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6502}
     - Class: 114
-      Script: {instanceID: 6862}
+      Script: {instanceID: 6886}
     - Class: 114
-      Script: {instanceID: 8690}
+      Script: {instanceID: 8724}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -628,39 +638,39 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1582}
+      Script: {instanceID: 1584}
     - Class: 114
       Script: {instanceID: 1586}
     - Class: 114
-      Script: {instanceID: 1784}
+      Script: {instanceID: 1786}
     - Class: 114
-      Script: {instanceID: 2642}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2806}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 3048}
+      Script: {instanceID: 3062}
     - Class: 114
-      Script: {instanceID: 3398}
+      Script: {instanceID: 3414}
     - Class: 114
-      Script: {instanceID: 4514}
+      Script: {instanceID: 4536}
     - Class: 114
-      Script: {instanceID: 4688}
+      Script: {instanceID: 4710}
     - Class: 114
-      Script: {instanceID: 5282}
+      Script: {instanceID: 5304}
     - Class: 114
-      Script: {instanceID: 5434}
+      Script: {instanceID: 5456}
     - Class: 114
-      Script: {instanceID: 5646}
+      Script: {instanceID: 5668}
     - Class: 114
-      Script: {instanceID: 6478}
+      Script: {instanceID: 6502}
     - Class: 114
-      Script: {instanceID: 6486}
+      Script: {instanceID: 6510}
     - Class: 114
-      Script: {instanceID: 6862}
+      Script: {instanceID: 6886}
     - Class: 114
-      Script: {instanceID: 7756}
+      Script: {instanceID: 7786}
     - Class: 114
-      Script: {instanceID: 7792}
+      Script: {instanceID: 7822}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -680,10 +690,22 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
+      Hash: ed76bfd7957534020543580a9efbff89
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GrabDetector
+  - hash:
+      serializedVersion: 2
       Hash: d41ab9b5ea92474f9c0a6937a0607ce1
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: ContentSizeFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 540882762544409cc4530e60db00e951
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: dd9dda1dfd39e605c49e72003342ef5d
@@ -696,12 +718,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.SpatialTracking
     namespaceName: UnityEngine.SpatialTracking
     className: TrackedPoseDriver
-  - hash:
-      serializedVersion: 2
-      Hash: 540882762544409cc4530e60db00e951
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 55060a7bf226ac385ce19ebd450f199f
@@ -806,6 +822,12 @@ ScriptsOnlyBuild:
     className: LeapXRServiceProvider
   - hash:
       serializedVersion: 2
+      Hash: 3e1e19a9cb7dd46dad7d005ffa4e1f55
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: InteractableArrow
+  - hash:
+      serializedVersion: 2
       Hash: f854af586011dd194574f89546642e29
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -822,6 +844,12 @@ ScriptsOnlyBuild:
     assemblyName: Ultraleap.Tracking.PhysicalHands
     namespaceName: Leap.PhysicalHands
     className: GrabHelper
+  - hash:
+      serializedVersion: 2
+      Hash: 6c088a2af97d0e96e3e3e78dc3c8205a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FingerTipCollider
   - hash:
       serializedVersion: 2
       Hash: 92edb590f42aa26ada6cfc43586b044a
@@ -908,6 +936,12 @@ ScriptsOnlyBuild:
     className: TurntableVisuals
   - hash:
       serializedVersion: 2
+      Hash: eb76568037e1b681c3a07c31b04849d0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: OverallGameManager
+  - hash:
+      serializedVersion: 2
       Hash: 16536f7a1c5f5fa33fc3a73a6c4a6c26
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -924,6 +958,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnBecameVisibleMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 22cfdfc67b06b205f2b4bb657a2389f2
+    assemblyName: Assembly-CSharp
+    namespaceName: Leap.Examples
+    className: PoseDetection
   - hash:
       serializedVersion: 2
       Hash: d6513b331a95193e4f20066ca0f18c5d
@@ -1010,6 +1050,18 @@ ScriptsOnlyBuild:
     className: UnityMessageListener
   - hash:
       serializedVersion: 2
+      Hash: c9ce0db312deeb08539611d824573311
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UnderEyeTouchDetector
+  - hash:
+      serializedVersion: 2
+      Hash: 2310e4ad4f53e45fcffbc95a79c151e7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DetectorLogicGates
+  - hash:
+      serializedVersion: 2
       Hash: ed8bac09ffacadca9994789e381c69ce
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
@@ -1092,6 +1144,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: TestResultRendererCallback
+  - hash:
+      serializedVersion: 2
+      Hash: 4fedfc3e8d26b79ed25d4596f4f210ca
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SwipeDetector
   - hash:
       serializedVersion: 2
       Hash: f8fca73d43e3947ba58edb7ca5d5b6bc
@@ -1376,6 +1434,12 @@ ScriptsOnlyBuild:
     className: VertexShakeB
   - hash:
       serializedVersion: 2
+      Hash: 7fff8afd6cfab60e11efbca350ea2cc3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: BoundingBoxVisualizer
+  - hash:
+      serializedVersion: 2
       Hash: fb79e95da8891fc7ac6c36ca6967af23
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -1394,10 +1458,22 @@ ScriptsOnlyBuild:
     className: XROrigin
   - hash:
       serializedVersion: 2
+      Hash: 77a4449c42a80a06dd39d5042819b655
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CanvasOpener
+  - hash:
+      serializedVersion: 2
       Hash: 1deda86fe7ffd8587afcfe68a02d034c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: EnvMapAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: 0a437a49e9249b26fe93d5e7fb271b58
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FaceMassageDetector
   - hash:
       serializedVersion: 2
       Hash: 665da785348a8806bf1524fe10742a60
@@ -1808,6 +1884,12 @@ ScriptsOnlyBuild:
     className: KeyboardManager
   - hash:
       serializedVersion: 2
+      Hash: bf3f2b6696dab9218bb4418dce7a0452
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HandAreaDetector
+  - hash:
+      serializedVersion: 2
       Hash: 35e0b31791c377513b6fc7b9568c50cd
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
@@ -1862,6 +1944,12 @@ ScriptsOnlyBuild:
     className: QuizManager
   - hash:
       serializedVersion: 2
+      Hash: 2f4b3606f37ddd27e88a265a19d9a478
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CanvasControllers
+  - hash:
+      serializedVersion: 2
       Hash: 103ad244d37625b40e59579cdd19c044
     assemblyName: Assembly-CSharp
     namespaceName: Leap.Examples
@@ -1890,12 +1978,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
     className: Benchmark03
-  - hash:
-      serializedVersion: 2
-      Hash: ed76bfd7957534020543580a9efbff89
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GrabDetector
   - hash:
       serializedVersion: 2
       Hash: 166b514f2d2a3298c465fac1b1629411
@@ -1950,6 +2032,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: a28c9e72cd5629fc498c1bea1702967f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GameEventHandler
   - hash:
       serializedVersion: 2
       Hash: 8bbce9932f67ad8e7f4eefec87800f94
@@ -2252,6 +2340,12 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
+      Hash: 9450b770150b9bd11cc2ff31cb8e5714
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MassageTutorialManager
+  - hash:
+      serializedVersion: 2
       Hash: ab71e93958afdfc45a4911be9d1cef55
     assemblyName: Ultraleap.Tracking.PhysicalHands
     namespaceName: Leap.PhysicalHands
@@ -2348,6 +2442,12 @@ ScriptsOnlyBuild:
     className: SimpleRendererUtil
   - hash:
       serializedVersion: 2
+      Hash: 7cf699f50ca5ef50fdea00482175e003
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DetectorLogicGate
+  - hash:
+      serializedVersion: 2
       Hash: 9fb1c3ab48b256d508ecddd967f98652
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
@@ -2376,6 +2476,12 @@ ScriptsOnlyBuild:
     assemblyName: Ultraleap.Tracking.Core
     namespaceName: Leap
     className: HandPoseScriptableObject
+  - hash:
+      serializedVersion: 2
+      Hash: d49ef8a49c53fb7ebcaef5df983cc3c1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TimedCanvasSwitcher
   - hash:
       serializedVersion: 2
       Hash: ff76cf6cf52b4db7b95af6ffadca9288
@@ -2430,6 +2536,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: b38c1c8ab07930575cebaf6c8cdc3c76
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: HandTrackerMonitor
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainPage.unity
