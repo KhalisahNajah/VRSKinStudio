@@ -8889,15 +8889,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753737813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec038b3d6de40848a7f7ed429bb59d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ab06a106bfcce645b36fd5cd0692de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabDetector: {fileID: 1972049446}
   initialCanvas: {fileID: 6558091981429208009}
-  grabSuccessCanvas: {fileID: 79246654}
-  grabSuccessCanvasDisplayDuration: 1
+  correctCanvas: {fileID: 79246654}
+  correctCanvasDisplayDuration: 1
   grabLostCanvas: {fileID: 562956688}
-  grabLostCheckInterval: 0.5
-  nextCanvas: {fileID: 1644194517}
+  nextCanvas: {fileID: 0}
   canvasesToHideOnNextSwitch: []
   gameObjectsToActivateOnNextSwitch:
   - {fileID: 393753164}
@@ -9798,7 +9798,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1972049445}
   - component: {fileID: 1972049446}
-  - component: {fileID: 1972049447}
   m_Layer: 0
   m_Name: Grab
   m_TagString: Untagged
@@ -9830,31 +9829,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1972049444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 267dab55a94efd043966211cdd9c46d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cc7ea08d93575043bca80c7a69fcf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leapProvider: {fileID: 1225848859379569215}
-  chirality: 1
-  activateStrength: 0.522
-  deactivateStrength: 0.6
---- !u!114 &1972049447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1972049444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49d03c6068fe8a9488c2d9e6b3cf4e90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leapProvider: {fileID: 1225848859379569215}
-  chirality: 0
-  activateStrength: 0.8
-  deactivateStrength: 0.6
   targetGrabObject: {fileID: 384361710038966011}
-  grabProximityThreshold: 0.1
+  leapProvider: {fileID: 1225848859379569215}
+  grabStrengthThreshold: 0.714
+  grabDistanceThreshold: 0.1
+  grabLostHysteresisTime: 0.2
+  OnGrabDetected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  WhileGrabDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGrabLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1988445945
 GameObject:
   m_ObjectHideFlags: 0

@@ -415,6 +415,8 @@
 "Assets/Script/GameEventHandler.cs"
 "Assets/Script/GrabbingDetection.cs"
 "Assets/Script/GrabDetector.cs"
+"Assets/Script/GrabNext.cs"
+"Assets/Script/GrabObjectDetector.cs"
 "Assets/Script/GrabPoseDetector.cs"
 "Assets/Script/IngredientLogic.cs"
 "Assets/Script/IngredienttextDisplay.cs"

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Manipulating Hand Data\Scripts\ProjectionPostProcessProvider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Script\GrabObjectDetector.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Pinch to Paint\Scripts\StrokeProcessor.cs" />
     <Compile Include="Assets\Script\GrabbingDetection.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Misc and Shared\Scripts\SimpleRendererUtil.cs" />
     <Compile Include="Assets\Samples\Ultraleap Tracking\7.2.0\XR Examples\Example Assets\Misc and Shared\Scripts\MovePoseExample.cs" />
     <Compile Include="Assets\Script\IngredienttextDisplay.cs" />
+    <Compile Include="Assets\Script\GrabNext.cs" />
     <Compile Include="Assets\Script\SceneManagement.cs" />
     <Compile Include="Assets\Script\TimedCanvasSwitcher.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
